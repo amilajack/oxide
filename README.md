@@ -30,8 +30,7 @@ parallelArray
 
 // Example with async/await
 async function parallelAsyncExample() {
-    const results =
-        await parallelArray.promise().map(each => each + 2)
+    const results = await parallelArray.promise().map(each => each + 2)
     console.log(results)
 }
 ```
@@ -41,13 +40,14 @@ async function parallelAsyncExample() {
 import { Thread } from 'oxide'
 
 const thread1 = new Thread()
+const thread2 = new Thread()
 
 thread1.run(() => {
     someExpensiveFn(1000)
 })
 
-thread1.run(() => {
-    someExpensiveFn(1000)
+thread2.run(() => {
+    fib(1000)
 })
 ```
 
