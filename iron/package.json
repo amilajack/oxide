@@ -1,0 +1,14 @@
+{
+  "name": "oxide",
+  "version": "0.0.1",
+  "description": "Parallelisim and concurrency primatives for JS",
+  "main": "lib/index.js",
+  "author": "Amila Welihinda <amilajack@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "neon-cli": "^0.1.17"
+  },
+  "scripts": {
+    "install": "neon build"
+  }
+}

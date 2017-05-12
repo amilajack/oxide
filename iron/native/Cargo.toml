@@ -1,0 +1,16 @@
+[package]
+name = "oxide"
+version = "0.0.1"
+authors = ["Amila Welihinda <amilajack@gmail.com>"]
+license = "MIT"
+build = "build.rs"
+
+[lib]
+name = "oxide"
+crate-type = ["dylib"]
+
+[build-dependencies]
+neon-build = "0.1.17"
+
+[dependencies]
+neon = "0.1.17"
