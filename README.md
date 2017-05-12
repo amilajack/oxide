@@ -5,7 +5,7 @@ Parallelisim and concurrency primatives for JS by leveraging immutability data s
 ### Goals
 - [ ] API's for threads, thread pool
 - [ ] Low overhead FFI
-- [ ] Native-feeling API's
+- [ ] map/filter/reduce implementation w/ work stealing
 - [ ] Async implementations
 
 ### IDEA
@@ -23,10 +23,10 @@ const parallelArray = ParallelArray.from(array)
 parallelArray.map(each => each + 2, 4);
 
 // Run parallel operations asynchronously
-parallelArray
-    .promise()
+const newMappedArray = parallelArray
+    .toPromise()
     .map(each => each + 2)
-    .then(console.log);
+    .then(console.log)
 
 // Example with async/await
 async function parallelAsyncExample() {
