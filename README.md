@@ -22,14 +22,10 @@ import { ParallelArray } from 'oxide'
 const array = [1, 2, 3, 4]
 const parallelArray = ParallelArray.from(array)
 
-// Map over the array in parallel over 4 threads
+// Map over the array in parallel over 4 threads asynchronously
+// .map(), .filter(), .reduce() implementations are all executed in parallel
 parallelArray
     .map(each => each + 2, 4)
-    .then(console.log)
-
-// Run parallel operations asynchronously
-parallelArray
-    .map(each => each + 2)
     .then(console.log)
 
 // Example with async/await
