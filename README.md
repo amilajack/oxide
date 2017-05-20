@@ -23,19 +23,19 @@ const array = [1, 2, 3, 4]
 const parallelArray = ParallelArray.from(array)
 
 // Map over the array in parallel over 4 threads
-(parallelArray: Arrray<Promise<number>>)
+(parallelArray: Promise<Arrray<number>>)
     .map(each => each + 2, 4)
     .then(console.log)
 
 // Run parallel operations asynchronously
-(parallelArray: Arrray<Promise<number>>)
+(parallelArray: Promise<Arrray<number>>)
     .map(each => each + 2)
     .then(console.log)
 
 // Example with async/await
 async function parallelAsyncExample() {
     const results = await parallelArray.map(each => each + 2)
-    console.log(results: Arrray<Promise<number>>)
+    console.log(results: Promise<Arrray<number>>)
 }
 ```
 
@@ -47,7 +47,7 @@ import { Thread } from 'oxide'
 const thread1 = new Thread()
 const thread2 = new Thread()
 
-const results: [any, number, undefined] = Promise.all([
+const results: Promise<[any, number, undefined]> = Promise.all([
     thread1.run(() => someExpensiveFn(1000)),
     thread2.run(() => fib(1000)),
     thread2.run(() => {
@@ -70,4 +70,6 @@ const result: number = thread2.runSync(() => fib(1000))
 ```
 
 ### Inspiration
-* [node-fibers](https://github.com/laverdet/node-fibers) by @laverdet
+* [node-fibers](https://github.com/laverdet/node-fibers)
+* [node-threads-a-gogo](https://github.com/xk/node-threads-a-gogo)
+* [RiverTrail](https://github.com/IntelLabs/RiverTrail)
