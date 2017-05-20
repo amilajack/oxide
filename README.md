@@ -2,11 +2,14 @@ oxide
 =====
 Parallelisim and concurrency primatives for JS by leveraging immutability data structures
 
+⚠️**WORK IN PROGRESS. DOES NOT WORK AT THE MOMENT**⚠️
+
 ### Goals
 - [ ] API's for threads, thread pool
 - [ ] Low overhead FFI
 - [ ] map/filter/reduce implementation w/ work stealing
-- [ ] Async implementations
+- [ ] Promise-based API (by default), provide sync implementations as well
+- [ ] Immtuable Data Structures (bitmapped vector trie, hash array mapped trie, etc), reduce copying for better perf
 
 ### IDEA
 #### Parallel map/reduce/filter
@@ -20,33 +23,48 @@ const array = [1, 2, 3, 4]
 const parallelArray = ParallelArray.from(array)
 
 // Map over the array in parallel over 4 threads
-parallelArray.map(each => each + 2, 4);
+(parallelArray: Arrray<Promise<number>>)
+    .map(each => each + 2, 4)
+    .then(console.log)
 
 // Run parallel operations asynchronously
-const newMappedArray = parallelArray
-    .toPromise()
+(parallelArray: Arrray<Promise<number>>)
     .map(each => each + 2)
     .then(console.log)
 
 // Example with async/await
 async function parallelAsyncExample() {
     const results = await parallelArray.promise().map(each => each + 2)
-    console.log(results)
+    console.log(results: Arrray<Promise<number>>)
 }
 ```
 
-#### Thread API
+#### Promise-Based API
+Ideally, oxide would be async by default, which align's well with node's convention:
 ```js
 import { Thread } from 'oxide'
 
 const thread1 = new Thread()
 const thread2 = new Thread()
 
-thread1.run(() => {
+Promise.all([
+    thread1.run(() => {
+        someExpensiveFn(1000)
+    }),
+    thread2.run(() => {
+        fib(1000)
+    })
+])
+```
+
+You can also call API's synchronously:
+
+```js
+thread1.runSync(() => {
     someExpensiveFn(1000)
 })
 
-thread2.run(() => {
+thread2.runSync(() => {
     fib(1000)
 })
 ```
