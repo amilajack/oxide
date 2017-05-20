@@ -51,7 +51,7 @@ const results: [any, number, undefined] = Promise.all([
     thread1.run(() => someExpensiveFn(1000)),
     thread2.run(() => fib(1000)),
     thread2.run(() => {
-        for (let i = 0; i < 10000) {
+        for (let i = 0; i < 10000; i++) {
             console.log('moo')
         }
     })
