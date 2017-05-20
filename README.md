@@ -34,7 +34,7 @@ const parallelArray = ParallelArray.from(array)
 
 // Example with async/await
 async function parallelAsyncExample() {
-    const results = await parallelArray.promise().map(each => each + 2)
+    const results = await parallelArray.map(each => each + 2)
     console.log(results: Arrray<Promise<number>>)
 }
 ```
@@ -47,14 +47,16 @@ import { Thread } from 'oxide'
 const thread1 = new Thread()
 const thread2 = new Thread()
 
-Promise.all([
-    thread1.run(() => {
-        someExpensiveFn(1000)
-    }),
+const results: [any, number, undefined] = Promise.all([
+    thread1.run(() => someExpensiveFn(1000)),
+    thread2.run(() => fib(1000)),
     thread2.run(() => {
-        fib(1000)
+        for (let i = 0; i < 10000) {
+            console.log('moo')
+        }
     })
 ])
+
 ```
 
 You can also call API's synchronously:
@@ -64,9 +66,7 @@ thread1.runSync(() => {
     someExpensiveFn(1000)
 })
 
-thread2.runSync(() => {
-    fib(1000)
-})
+const result: number = thread2.runSync(() => fib(1000))
 ```
 
 ### Inspiration
