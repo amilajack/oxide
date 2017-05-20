@@ -23,19 +23,19 @@ const array = [1, 2, 3, 4]
 const parallelArray = ParallelArray.from(array)
 
 // Map over the array in parallel over 4 threads
-(parallelArray: Promise<Arrray<number>>)
+parallelArray
     .map(each => each + 2, 4)
     .then(console.log)
 
 // Run parallel operations asynchronously
-(parallelArray: Promise<Arrray<number>>)
+parallelArray
     .map(each => each + 2)
     .then(console.log)
 
 // Example with async/await
 async function parallelAsyncExample() {
     const results = await parallelArray.map(each => each + 2)
-    console.log(results: Promise<Arrray<number>>)
+    console.log(results)
 }
 ```
 
@@ -47,7 +47,7 @@ import { Thread } from 'oxide'
 const thread1 = new Thread()
 const thread2 = new Thread()
 
-const results: Promise<[any, number, undefined]> = Promise.all([
+Promise.all([
     thread1.run(() => someExpensiveFn(1000)),
     thread2.run(() => fib(1000)),
     thread2.run(() => {
