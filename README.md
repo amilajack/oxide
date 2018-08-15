@@ -1,5 +1,8 @@
 oxide
 =====
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/amilajack/oxide.svg)](https://greenkeeper.io/)
+
 Parallelisim and concurrency primatives for JS by leveraging immutability data structures
 
 ⚠️**WORK IN PROGRESS. DOES NOT WORK AT THE MOMENT**⚠️
